@@ -10,13 +10,13 @@
 #define for_x for(x = 0; x < w; x++)
 #define for_y for(y = 0; y < h; y++)
 
-#define DEAD_STR "\033[07m \033[m"
-#define ALIVE_STR "  "
+#define ALIVE_STR "\033[07m \033[m"
+#define DEAD_STR "  "
 
 #define BUF_SIZE 10
 
 /*
- * Returnst he number of cells alive on the board.
+ * Returns the number of cells alive on the board.
  */
 int num_alive(void *u, int w, int h)
 {
@@ -45,13 +45,13 @@ void display(void *u, int w, int h, int step)
     int x, y;
     for_y {
         for_x {
-            printf(t[y][x] ? DEAD_STR : ALIVE_STR);
+            printf(t[y][x] ? ALIVE_STR : DEAD_STR);
         }
         printf("\033[E");
     }
-    printf("Step: %d\n", step);
+    printf("\033[KStep: %d\n", step);
     int alive = num_alive(u, w, h);
-    printf("Alive: %d", alive);
+    printf("\033[KAlive: %d", alive);
     fflush(stdout);
 }
 
